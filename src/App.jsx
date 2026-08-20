@@ -1,176 +1,264 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import {
-  FaGithub,
-  FaLinkedin,
-  FaEnvelope,
   FaMapMarkerAlt,
-  FaCode,
-  FaDatabase,
-  FaServer,
-  FaGlobe
+  FaCode, FaDatabase, FaServer, FaGlobe, FaDownload,
+  FaBriefcase, FaPaperPlane
 } from 'react-icons/fa';
 import {
-  SiReact,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiTailwindcss,
-  SiSocketdotio,
-  SiVercel
+  SiReact, SiNodedotjs, SiMongodb,
+  SiTailwindcss, SiVercel
 } from 'react-icons/si';
 
 function App() {
+  const form = useRef();
+  const [formStatus, setFormStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setFormStatus({ type: '', message: '' });
+
+    const serviceID = 'YOUR_SERVICE_ID';
+    const templateID = 'YOUR_TEMPLATE_ID';
+    const publicKey = 'YOUR_PUBLIC_KEY';
+
+    emailjs.sendForm(serviceID, templateID, form.current, publicKey)
+      .then(() => {
+        setFormStatus({ type: 'success', message: 'Message sent successfully! I will get back to you soon.' });
+        form.current.reset();
+      }, (error) => {
+        setFormStatus({ type: 'error', message: 'Failed to send message. Please try again later.' });
+        console.error('EmailJS error:', error);
+      })
+      .finally(() => setIsSubmitting(false));
+  };
+
+  const navLinks = [
+    { href: '#about', label: 'About' },
+    { href: '#experience', label: 'Experience' },
+    { href: '#skills', label: 'Skills' },
+    { href: '#projects', label: 'Projects' },
+    { href: '#contact', label: 'Contact' },
+  ];
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-gray-800 font-sans">
+    <div className="min-h-screen bg-white text-gray-800 font-sans scroll-smooth overflow-x-hidden">
 
-      {/* ===== HERO SECTION ===== */}
-      <section className="relative py-24 px-6 bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
-        <div className="absolute top-20 right-20 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-200/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div className="relative max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12 z-10">
-          <div className="w-32 h-32 md:w-44 md:h-44 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 border-4 border-white shadow-xl flex items-center justify-center overflow-hidden shrink-0">
-            <span className="text-white text-5xl font-light">PC</span>
-          </div>
-
-          <div className="text-center md:text-left flex-1">
-            <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight">Paolo Vincent Carunia</h1>
-            <p className="text-xl text-blue-600 font-medium mt-2">Student Developer &amp; Full Stack Enthusiast</p>
-
-            <div className="flex items-center justify-center md:justify-start gap-2 mt-2 text-gray-500">
-              <FaMapMarkerAlt className="w-4 h-4" />
-              <span className="text-sm">Bentigan, Cuyapo, Nueva Ecija</span>
-            </div>
-
-            <p className="text-gray-600 mt-4 max-w-lg leading-relaxed mx-auto md:mx-0">
-              I am an aspiring Full Stack Developer focused on building clean, responsive,
-              and impactful web applications. I love turning complex ideas into functional
-              tools that serve real-world communities.
-            </p>
-
-            <div className="flex justify-center md:justify-start gap-4 mt-6">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition text-gray-700">
-                <FaGithub className="w-5 h-5" />
+      {/* ===== STICKY TOP NAVBAR ===== */}
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 py-4 px-6">
+        <div className="max-w-5xl mx-auto flex justify-between items-center">
+          <span className="text-xl font-serif font-bold tracking-tight text-gray-900">PC.</span>
+          <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="hover:text-black transition-colors">
+                {link.label}
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition text-gray-700">
-                <FaLinkedin className="w-5 h-5" />
-              </a>
-              <a href="mailto:your.email@example.com" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition text-gray-700">
-                <FaEnvelope className="w-5 h-5" />
-              </a>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
+      </nav>
 
-      {/* ===== ABOUT & SKILLS SECTION ===== */}
-      <section className="py-16 px-6 max-w-4xl mx-auto">
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <FaCode className="w-6 h-6 text-blue-600" /> About Me
-          </h2>
-          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-            <p className="text-gray-600 leading-relaxed mb-4">
-              I am currently studying web development. My passion lies in building tools
-              that solve local problems. I recently developed a real-time emergency response
-              system for the Municipality of Santa Rosa, which strengthened my skills in
-              React, Node.js, and real-time data handling.
-            </p>
-          </div>
-        </div>
+      {/* ===== MAIN CENTERED CONTENT ===== */}
+      <main className="w-full flex flex-col items-center justify-center px-6 py-12 md:py-24">
 
-        <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <FaDatabase className="w-6 h-6 text-blue-600" /> Tech Stack
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
-              <SiReact className="w-6 h-6 text-cyan-500" />
-              <span className="font-medium text-gray-700">React</span>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
-              <SiNodedotjs className="w-6 h-6 text-green-600" />
-              <span className="font-medium text-gray-700">Node.js</span>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
-              <SiExpress className="w-6 h-6 text-gray-700" />
-              <span className="font-medium text-gray-700">Express</span>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
-              <SiMongodb className="w-6 h-6 text-green-700" />
-              <span className="font-medium text-gray-700">MongoDB</span>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
-              <SiSocketdotio className="w-6 h-6 text-gray-700" />
-              <span className="font-medium text-gray-700">Socket.io</span>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
-              <SiTailwindcss className="w-6 h-6 text-cyan-500" />
-              <span className="font-medium text-gray-700">Tailwind CSS</span>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
-              <SiVercel className="w-6 h-6 text-gray-800" />
-              <span className="font-medium text-gray-700">Vercel</span>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
-              <FaServer className="w-6 h-6 text-blue-600" />
-              <span className="font-medium text-gray-700">REST APIs</span>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
-              <FaGlobe className="w-6 h-6 text-blue-600" />
-              <span className="font-medium text-gray-700">Git &amp; GitHub</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        {/* INNER WRAPPER - Controls max width */}
+        <div className="w-full max-w-4xl flex flex-col gap-20">
 
-      {/* ===== PROJECTS SECTION ===== */}
-      <section className="bg-white py-16 px-6 border-y border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2">
-            <FaCode className="w-6 h-6 text-blue-600" /> Featured Project
-          </h2>
+          {/* ===== HERO SECTION ===== */}
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-12"
+          >
+            {/* Square Image - No Outline */}
+            <div className="w-40 h-40 md:w-52 md:h-52 bg-gray-100 flex items-center justify-center overflow-hidden shrink-0 shadow-sm">
+              <img src="/Profile.jpeg" alt="Paolo Vincent Carunia" className="w-full h-full object-cover" />
+            </div>
 
-          <div className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <div className="md:flex">
-              <div className="md:w-5/12 bg-gray-200 h-48 md:h-auto flex items-center justify-center text-gray-400 text-sm p-4">
-                [Screenshot of iRespond Dashboard]
+            <div className="flex-1 text-center md:text-left">
+              <h1 className="text-4xl md:text-6xl font-serif text-gray-900 tracking-tight">Paolo Vincent Carunia</h1>
+              <p className="text-lg text-gray-500 mt-1 font-medium">BSIT Student &amp; Freelance Web Developer</p>
+
+              {/* ✅ Capstone role */}
+              <p className="text-sm text-gray-400 mt-1">Full Stack Developer | The Municipal Rescue System</p>
+
+              <p className="text-gray-600 mt-6 max-w-lg leading-relaxed mx-auto md:mx-0">
+                I build clean, responsive web applications for real-world use. I recently developed a live emergency response system for the Municipality of Santa Rosa.
+              </p>
+
+              {/* 🔹 ARROW SLIDES 4PX TO THE RIGHT ON HOVER */}
+              <div className="flex flex-wrap justify-center md:justify-start gap-6 mt-8">
+                <a href="https://github.com/dashboard" target="_blank" className="group relative inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                  GitHub
+                  <span className="opacity-0 transform translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-xs text-gray-400">↗</span>
+                </a>
+                <a href="https://www.linkedin.com/in/paolo-vincent-carunia-1637aa3ba/" target="_blank" className="group relative inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                  LinkedIn
+                  <span className="opacity-0 transform translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-xs text-gray-400">↗</span>
+                </a>
+                <a href="mailto:caruniapaolovince@gmail.com" className="group relative inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                  Email
+                  <span className="opacity-0 transform translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-xs text-gray-400">↗</span>
+                </a>
+                <a href="/resume.pdf" download className="group relative inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                  CV
+                  <span className="opacity-0 transform translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-xs text-gray-400">↗</span>
+                </a>
               </div>
-              <div className="p-6 md:w-7/12 flex flex-col justify-between">
+            </div>
+          </motion.section>
+
+          {/* ===== ABOUT SECTION ===== */}
+          <motion.section id="about" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="scroll-mt-20">
+            <h2 className="text-2xl font-serif text-gray-900 mb-4 flex items-center gap-2">
+              <FaCode className="w-5 h-5 text-gray-500" /> About
+            </h2>
+            <p className="text-gray-600 leading-relaxed text-lg">
+              I am currently pursuing a BSIT degree at NEUST. I love building tools that solve local problems. I recently developed a real-time emergency response system for Santa Rosa, strengthening my skills in React, Node.js, and real-time data handling.
+            </p>
+          </motion.section>
+
+          {/* ===== EXPERIENCE SECTION ===== */}
+          <motion.section id="experience" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="scroll-mt-20">
+            <h2 className="text-2xl font-serif text-gray-900 mb-6 flex items-center gap-2">
+              <FaBriefcase className="w-5 h-5 text-gray-500" /> Experience
+            </h2>
+            <div className="space-y-6">
+              <div className="flex flex-col md:flex-row md:items-start md:gap-6 border-l-2 border-gray-100 pl-4 md:pl-6">
+                <span className="text-sm text-gray-400 md:w-28 shrink-0">2024 – Present</span>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">Santa Rosa Municipal Rescue System</h3>
-                  <p className="text-gray-600 text-sm mt-2 leading-relaxed">
-                    A real-time emergency response platform built for the Municipality of Santa Rosa.
-                    Connects citizens to dispatchers with live incident feeds, GPS geolocation, photo uploads, and real-time mapping.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">React</span>
-                    <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">Node.js</span>
-                    <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">Express</span>
-                    <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">MongoDB</span>
-                    <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">Socket.io</span>
+                  <h3 className="font-semibold text-gray-900">Freelance Web Developer</h3>
+                  <p className="text-gray-500 text-sm">Commission-Based Projects</p>
+                  <p className="text-gray-600 mt-1 text-sm">Building custom websites and web apps for clients.</p>
+                </div>
+              </div>
+              <div className="flex flex-col md:flex-row md:items-start md:gap-6 border-l-2 border-gray-100 pl-4 md:pl-6">
+                <span className="text-sm text-gray-400 md:w-28 shrink-0">2023 – Present</span>
+                <div>
+                  <h3 className="font-semibold text-gray-900">BSIT Student</h3>
+                  <p className="text-gray-500 text-sm">Nueva Ecija University of Science and Technology</p>
+                  <p className="text-gray-600 mt-1 text-sm">Currently under Web System Development.</p>
+                </div>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* ===== SKILLS SECTION ===== */}
+          <motion.section id="skills" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="scroll-mt-20">
+            <h2 className="text-2xl font-serif text-gray-900 mb-6 flex items-center gap-2">
+              <FaDatabase className="w-5 h-5 text-gray-500" /> Skills
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="bg-white p-3 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition border border-gray-100">
+                <SiReact className="w-5 h-5 text-cyan-500" />
+                <span className="font-medium text-gray-700 text-xs">React</span>
+              </div>
+              <div className="bg-white p-3 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition border border-gray-100">
+                <SiNodedotjs className="w-5 h-5 text-green-600" />
+                <span className="font-medium text-gray-700 text-xs">Node.js</span>
+              </div>
+              <div className="bg-white p-3 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition border border-gray-100">
+                <SiMongodb className="w-5 h-5 text-green-700" />
+                <span className="font-medium text-gray-700 text-xs">MongoDB</span>
+              </div>
+              <div className="bg-white p-3 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition border border-gray-100">
+                <SiTailwindcss className="w-5 h-5 text-cyan-500" />
+                <span className="font-medium text-gray-700 text-xs">Tailwind CSS</span>
+              </div>
+              <div className="bg-white p-3 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition border border-gray-100">
+                <SiVercel className="w-5 h-5 text-gray-700" />
+                <span className="font-medium text-gray-700 text-xs">Vercel</span>
+              </div>
+              <div className="bg-white p-3 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition border border-gray-100">
+                <FaServer className="w-5 h-5 text-blue-500" />
+                <span className="font-medium text-gray-700 text-xs">Render</span>
+              </div>
+              <div className="bg-white p-3 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition border border-gray-100">
+                <FaGlobe className="w-5 h-5 text-gray-500" />
+                <span className="font-medium text-gray-700 text-xs">Ngrok</span>
+              </div>
+              <div className="bg-white p-3 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition border border-gray-100">
+                <FaCode className="w-5 h-5 text-gray-500" />
+                <span className="font-medium text-gray-700 text-xs">Git & GitHub</span>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* ===== PROJECTS SECTION ===== */}
+          <motion.section id="projects" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="scroll-mt-20">
+            <h2 className="text-2xl font-serif text-gray-900 mb-6 flex items-center gap-2">
+              <FaCode className="w-5 h-5 text-gray-500" /> Work
+            </h2>
+            <div className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-5/12 h-48 md:h-auto bg-gray-50">
+                  <img src="/Homepage.png" alt="iRespond Dashboard" className="w-full h-full object-cover" />
+                </div>
+                <div className="p-6 md:w-7/12 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-serif font-bold text-gray-900">Santa Rosa Rescue System</h3>
+                    <p className="text-gray-600 text-sm mt-2 leading-relaxed">Real-time emergency response platform with live incident feeds, GPS, photo uploads, and mapping.</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">React</span>
+                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Node.js</span>
+                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">MongoDB</span>
+                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Tailwind</span>
+                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Vercel</span>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <a href="https://www.rescuesantarosagov.live/" target="_blank" className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-sm text-gray-700 hover:bg-gray-50 transition">
+                      <FaGlobe className="w-4 h-4" /> Visit
+                    </a>
                   </div>
                 </div>
-                <div className="mt-4 flex gap-3">
-                  <a href="https://www.rescuesantarosagov.live/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition">
-                    <FaGlobe className="w-4 h-4" /> Live Demo
-                  </a>
-                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </motion.section>
 
-      {/* ===== FOOTER ===== */}
-      <footer className="py-8 px-6 text-center">
-        <div className="max-w-4xl mx-auto border-t border-gray-200 pt-8">
-          <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Paolo Vincent Carunia.
-          </p>
-        </div>
-      </footer>
+          {/* ===== CONTACT SECTION ===== */}
+          <motion.section id="contact" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="scroll-mt-20">
+            <h2 className="text-2xl font-serif text-gray-900 mb-6 flex items-center gap-2">
+              <FaPaperPlane className="w-5 h-5 text-gray-500" /> Contact
+            </h2>
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="md:w-1/2">
+                <p className="text-gray-600 mb-4">Have a project or idea? Feel free to reach out.</p>
+                <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
+                  <span className="font-medium">Email:</span> caruniapaolovince@gmail.com
+                </div>
+                <div className="flex items-center gap-2 text-gray-600 text-sm">
+                  <span className="font-medium">Phone:</span> +63 926 624 7473
+                </div>
+              </div>
+              <form ref={form} onSubmit={sendEmail} className="md:w-1/2 space-y-3">
+                <input type="text" name="user_name" placeholder="Name" required className="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400" />
+                <input type="email" name="user_email" placeholder="Email" required className="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400" />
+                <textarea name="message" rows="3" placeholder="Message" required className="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 resize-none"></textarea>
+                <button type="submit" disabled={isSubmitting} className="w-full py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition disabled:opacity-60">
+                  {isSubmitting ? 'Sending...' : 'Send'}
+                </button>
+              </form>
+            </div>
+          </motion.section>
 
+          {/* ===== FOOTER ===== */}
+          <footer className="pt-8 border-t border-gray-100 text-center">
+            <p className="text-sm text-gray-400">&copy; 2026 Paolo Vincent Carunia</p>
+          </footer>
+
+        </div>
+      </main>
     </div>
   );
 }
