@@ -53,7 +53,6 @@ function App() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          // Only update if we are NOT clicking
           if (entry.isIntersecting && !isClickingRef.current) {
             setActiveSection(`#${entry.target.id}`);
           }
@@ -61,7 +60,7 @@ function App() {
       },
       {
         threshold: 0.4,
-        rootMargin: '0px 0px -30% 0px' // 🎯 This forces precise centering
+        rootMargin: '0px 0px -30% 0px'
       }
     );
     sections.forEach(section => {
@@ -81,12 +80,19 @@ function App() {
 
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const yOffset = -80; // 👈 Offsets the scroll to account for the fixed navbar
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
 
     setTimeout(() => {
       isClickingRef.current = false;
     }, 800);
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -95,7 +101,11 @@ function App() {
       {/* ===== STICKY TOP NAVBAR ===== */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100 py-4 px-6 shadow-sm">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
-          <a href="#top" className="text-xl font-serif font-bold tracking-tight text-gray-900 hover:opacity-80 transition-opacity cursor-pointer">
+          <a
+            href="#top"
+            onClick={handleLogoClick}
+            className="text-xl font-serif font-bold tracking-tight text-gray-900 hover:opacity-80 transition-opacity cursor-pointer"
+          >
             PC.
           </a>
 
@@ -192,9 +202,9 @@ function App() {
       </AnimatePresence>
 
       {/* ===== MAIN CONTENT ===== */}
+      <div id="top" className="absolute top-0 left-0 w-full"></div>
       <main className="w-full flex flex-col items-center justify-center px-6 pt-28 md:pt-36 pb-16 md:pb-32">
 
-        {/* 🎯 REDUCED GAP TO 24 SO OBSERVER TRIGGERS ACCURATELY */}
         <div className="w-full max-w-4xl flex flex-col gap-24 md:gap-24">
 
           {/* ===== HERO / PROFILE ===== */}
@@ -217,22 +227,39 @@ function App() {
               <p className="text-gray-600 mt-8 max-w-lg leading-relaxed mx-auto md:mx-0">
                 I build clean, responsive web applications for real-world use. I recently developed a live emergency response system for the Municipality of Santa Rosa.
               </p>
-              <div className="flex flex-wrap justify-center md:justify-start gap-6 mt-10">
-                <a href="https://github.com/dashboard" target="_blank" className="group relative inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+
+              {/* 🔹 PILL BUTTONS WITH ARROW & HOVER EFFECT */}
+              <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-10">
+                <a
+                  href="https://github.com/dashboard"
+                  target="_blank"
+                  className="inline-flex items-center gap-2 bg-gray-100 hover:bg-black hover:text-white text-gray-700 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                >
                   GitHub
-                  <span className="opacity-0 transform translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-xs text-gray-400">↗</span>
+                  <span className="text-gray-500 group-hover:text-white transition-colors duration-300">↗</span>
                 </a>
-                <a href="https://www.linkedin.com/in/paolo-vincent-carunia-1637aa3ba/" target="_blank" className="group relative inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                <a
+                  href="https://www.linkedin.com/in/paolo-vincent-carunia-1637aa3ba/"
+                  target="_blank"
+                  className="inline-flex items-center gap-2 bg-gray-100 hover:bg-black hover:text-white text-gray-700 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                >
                   LinkedIn
-                  <span className="opacity-0 transform translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-xs text-gray-400">↗</span>
+                  <span className="text-gray-500 group-hover:text-white transition-colors duration-300">↗</span>
                 </a>
-                <a href="mailto:caruniapaolovince@gmail.com" className="group relative inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                <a
+                  href="mailto:caruniapaolovince@gmail.com"
+                  className="inline-flex items-center gap-2 bg-gray-100 hover:bg-black hover:text-white text-gray-700 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                >
                   Email
-                  <span className="opacity-0 transform translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-xs text-gray-400">↗</span>
+                  <span className="text-gray-500 group-hover:text-white transition-colors duration-300">↗</span>
                 </a>
-                <a href="/resume.pdf" download className="group relative inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="inline-flex items-center gap-2 bg-gray-100 hover:bg-black hover:text-white text-gray-700 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                >
                   CV
-                  <span className="opacity-0 transform translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-xs text-gray-400">↗</span>
+                  <span className="text-gray-500 group-hover:text-white transition-colors duration-300">↗</span>
                 </a>
               </div>
             </div>
@@ -320,8 +347,9 @@ function App() {
                     </div>
                   </div>
                   <div className="mt-6">
-                    <a href="https://www.rescuesantarosagov.live/" target="_blank" className="inline-flex items-center gap-2 px-5 py-2 border border-gray-300 rounded-full text-base text-gray-700 hover:bg-gray-50 transition">
-                      <FaGlobe className="w-4 h-4" /> Visit
+                    <a href="https://www.rescuesantarosagov.live/" target="_blank" className="inline-flex items-center gap-2 bg-gray-100 hover:bg-black hover:text-white text-gray-700 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300">
+                      Visit
+                      <span className="text-gray-500 group-hover:text-white transition-colors duration-300">↗</span>
                     </a>
                   </div>
                 </div>
