@@ -53,9 +53,11 @@ function App() {
     <div className="min-h-screen bg-white text-gray-800 font-sans scroll-smooth overflow-x-hidden">
 
       {/* ===== STICKY TOP NAVBAR ===== */}
-      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 py-4 px-6">
+      <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100 py-4 px-6 shadow-sm">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
-          <span className="text-xl font-serif font-bold tracking-tight text-gray-900">PC.</span>
+          <a href="#top" className="text-xl font-serif font-bold tracking-tight text-gray-900 hover:opacity-80 transition-opacity cursor-pointer">
+            PC.
+          </a>
           <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="hover:text-black transition-colors">
@@ -82,11 +84,11 @@ function App() {
           >
             {/* Square Image - No Outline */}
             <div className="w-40 h-40 md:w-52 md:h-52 bg-gray-100 flex items-center justify-center overflow-hidden shrink-0 shadow-sm">
-              <img src="/Profile.jpeg" alt="Paolo Vincent Carunia" className="w-full h-full object-cover" />
+              <img src="/Profile.jpeg" alt="Paolo Carunia" className="w-full h-full object-cover" />
             </div>
 
             <div className="flex-1 text-center md:text-left">
-              <h1 className="text-4xl md:text-6xl font-serif text-gray-900 tracking-tight">Paolo Vincent Carunia</h1>
+              <h1 className="text-4xl md:text-6xl font-serif text-gray-900 tracking-tight">Paolo Carunia</h1>
               <p className="text-lg text-gray-500 mt-1 font-medium">BSIT Student &amp; Freelance Web Developer</p>
 
               {/* ✅ Capstone role */}
