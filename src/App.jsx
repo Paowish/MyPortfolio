@@ -77,17 +77,6 @@ function App() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  const stagger = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
   const handleNavClick = (href) => {
     isClickingRef.current = true;
     setActiveSection(href);
@@ -121,7 +110,7 @@ function App() {
             className="text-2xl font-bold tracking-tight text-gray-900 hover:opacity-80 transition-opacity flex items-center gap-2"
           >
             <span className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center text-white text-sm">P</span>
-            <span>PC<span className="text-blue-600">.</span></span>
+            <span>Paolo<span className="text-blue-600">.</span></span>
           </a>
 
           <div className="hidden md:flex items-center gap-6 text-sm font-medium">
@@ -181,7 +170,7 @@ function App() {
             className="fixed top-0 right-0 h-full w-80 z-[70] bg-white/95 backdrop-blur-xl shadow-2xl p-8 md:hidden flex flex-col"
           >
             <div className="flex justify-between items-center mb-10">
-              <span className="text-2xl font-bold tracking-tight text-gray-900">PC<span className="text-blue-600">.</span></span>
+              <span className="text-2xl font-bold tracking-tight text-gray-900">Paolo<span className="text-blue-600">.</span></span>
               <button
                 onClick={() => setIsMenuOpen(false)}
                 className="p-2 text-gray-500 hover:text-black transition-colors hover:bg-gray-50 rounded-lg"
@@ -251,9 +240,9 @@ function App() {
                 transition={{ delay: 0.3 }}
                 className="text-5xl md:text-7xl font-bold text-gray-900 tracking-tight leading-[1.1] mb-6"
               >
-                Building the Future
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                  Through Code
+                <span className="block">Paolo Carunia</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 text-3xl md:text-4xl mt-2">
+                  AI-Assisted Full Stack Developer
                 </span>
               </motion.h1>
 
@@ -263,7 +252,7 @@ function App() {
                 transition={{ delay: 0.4 }}
                 className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10"
               >
-                AI-Assisted Full Stack Developer crafting scalable, intelligent web applications with modern technologies and human-centered design.
+                Crafting scalable, intelligent web applications with modern technologies and human-centered design.
               </motion.p>
 
               <motion.div
@@ -294,7 +283,7 @@ function App() {
                   <h2 className="text-2xl font-bold text-gray-900">About Me</h2>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-lg mb-6">
-                  I'm a passionate developer who believes in the power of technology to solve real-world problems. With a strong foundation in full-stack development and a growing expertise in AI-assisted workflows, I create solutions that are both innovative and practical.
+                  I'm Paolo Carunia, a passionate developer who believes in the power of technology to solve real-world problems. With a strong foundation in full-stack development and a growing expertise in AI-assisted workflows, I create solutions that are both innovative and practical.
                 </p>
                 <div className="flex items-center gap-4 text-sm text-gray-500">
                   <div className="flex items-center gap-2">
