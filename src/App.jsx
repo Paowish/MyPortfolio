@@ -4,7 +4,7 @@ import emailjs from '@emailjs/browser';
 import {
   FaCode, FaDatabase, FaServer, FaGlobe, FaDownload,
   FaBriefcase, FaPaperPlane, FaBars, FaTimes, FaGithub, FaLinkedinIn, FaEnvelope,
-  FaUser, FaLaptopCode, FaAward, FaGraduationCap
+  FaUser, FaLaptopCode, FaAward, FaGraduationCap, FaRobot, FaBrain, FaRocket
 } from 'react-icons/fa';
 import {
   SiReact, SiNodedotjs, SiMongodb,
@@ -234,10 +234,10 @@ function App() {
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
                 Paolo Carunia
               </h1>
-              <p className="text-xl text-gray-600 mt-2 font-medium">Full Stack Developer</p>
+              <p className="text-xl text-gray-600 mt-2 font-medium">AI-Assisted Full Stack Developer</p>
               <p className="text-sm text-gray-500 mt-1">BSIT · Nueva Ecija University of Science and Technology</p>
               <p className="text-gray-600 mt-6 max-w-lg leading-relaxed mx-auto md:mx-0">
-                Building scalable web applications with modern technologies. Passionate about creating solutions that make a real impact.
+                Leveraging AI-assisted development to build scalable, intelligent web applications. Passionate about human-AI collaboration in software engineering.
               </p>
 
               <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-8">
@@ -284,7 +284,7 @@ function App() {
               </div>
               <h2 className="text-2xl font-bold text-gray-900">About Me</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                 <div className="flex items-center gap-3 mb-3">
                   <FaLaptopCode className="text-blue-600 text-xl" />
@@ -292,6 +292,15 @@ function App() {
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Full-stack developer with expertise in React, Node.js, and modern web technologies.
+                </p>
+              </div>
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <div className="flex items-center gap-3 mb-3">
+                  <FaRobot className="text-blue-600 text-xl" />
+                  <h3 className="font-semibold text-gray-900">AI-Assisted</h3>
+                </div>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Leveraging generative AI and LLMs to accelerate development and solve complex problems.
                 </p>
               </div>
               <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
@@ -328,14 +337,15 @@ function App() {
                 <div className="flex flex-col md:flex-row md:items-start md:gap-6">
                   <span className="text-sm font-semibold text-blue-600 md:w-28 shrink-0">2024 – Present</span>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-lg">Freelance Web Developer</h3>
+                    <h3 className="font-bold text-gray-900 text-lg">AI-Assisted Freelance Developer</h3>
                     <p className="text-gray-500 text-sm mb-2">Commission-Based Projects</p>
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      Building custom web applications and websites for diverse clients. Specializing in React, Node.js, and responsive design.
+                      Leveraging AI tools and generative models to build custom web applications efficiently. Specializing in React, Node.js, and AI-enhanced development workflows.
                     </p>
                     <div className="flex flex-wrap gap-1.5 mt-3">
                       <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">React</span>
                       <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">Node.js</span>
+                      <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">AI Tools</span>
                       <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">Tailwind</span>
                     </div>
                   </div>
@@ -348,12 +358,13 @@ function App() {
                     <h3 className="font-bold text-gray-900 text-lg">BSIT Student</h3>
                     <p className="text-gray-500 text-sm mb-2">Nueva Ecija University of Science and Technology</p>
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      Specializing in Web System Development. Building a strong foundation in full-stack development, databases, and system architecture.
+                      Specializing in Web System Development with a focus on AI integration and modern software engineering practices.
                     </p>
                     <div className="flex flex-wrap gap-1.5 mt-3">
                       <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">JavaScript</span>
                       <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">MongoDB</span>
                       <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">Git</span>
+                      <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">AI/ML</span>
                     </div>
                   </div>
                 </div>
@@ -365,7 +376,7 @@ function App() {
           <motion.section id="skills" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="scroll-mt-20 py-4">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 bg-blue-50 rounded-lg">
-                <FaDatabase className="w-5 h-5 text-blue-600" />
+                <FaBrain className="w-5 h-5 text-blue-600" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900">Skills & Technologies</h2>
             </div>
@@ -383,6 +394,8 @@ function App() {
                 { icon: <SiVercel className="w-5 h-5 text-gray-700" />, name: 'Vercel' },
                 { icon: <SiDocker className="w-5 h-5 text-blue-500" />, name: 'Docker' },
                 { icon: <FaServer className="w-5 h-5 text-blue-500" />, name: 'Render' },
+                { icon: <FaRobot className="w-5 h-5 text-purple-600" />, name: 'AI Integration' },
+                { icon: <FaBrain className="w-5 h-5 text-green-600" />, name: 'LLM Prompting' },
                 { icon: <FaGlobe className="w-5 h-5 text-gray-500" />, name: 'REST APIs' },
                 { icon: <FaCode className="w-5 h-5 text-gray-500" />, name: 'Git' },
               ].map((skill, idx) => (
@@ -400,7 +413,7 @@ function App() {
           <motion.section id="projects" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="scroll-mt-20 py-4">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 bg-blue-50 rounded-lg">
-                <FaCode className="w-5 h-5 text-blue-600" />
+                <FaRocket className="w-5 h-5 text-blue-600" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900">Projects</h2>
             </div>
@@ -412,12 +425,13 @@ function App() {
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900">Santa Rosa Rescue System</h3>
                   <p className="text-gray-600 text-sm mt-2 leading-relaxed">
-                    Real-time emergency response platform with live incident feeds, GPS tracking, photo uploads, and interactive mapping.
+                    AI-enhanced real-time emergency response platform with live incident feeds, GPS tracking, photo uploads, and interactive mapping.
                   </p>
                   <div className="flex flex-wrap gap-1.5 mt-4">
                     <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">React</span>
                     <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">Node.js</span>
                     <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">MongoDB</span>
+                    <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">AI</span>
                     <span className="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">Tailwind</span>
                   </div>
                   <a href="https://www.rescuesantarosagov.live/" target="_blank" className="inline-flex items-center gap-2 mt-4 bg-gray-900 hover:bg-gray-800 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all">
@@ -428,12 +442,12 @@ function App() {
 
               <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex items-center justify-center">
                 <div className="p-8 text-center">
-                  <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaCode className="text-3xl text-blue-600" />
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-purple-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <FaRobot className="text-3xl text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">More Projects Coming</h3>
+                  <h3 className="text-xl font-bold text-gray-900">AI Projects Coming</h3>
                   <p className="text-gray-500 text-sm mt-2">
-                    I'm currently working on new projects. Stay tuned!
+                    Exploring AI-assisted development for smarter applications.
                   </p>
                 </div>
               </div>
@@ -523,7 +537,7 @@ function App() {
 
           {/* ===== FOOTER ===== */}
           <footer className="pt-8 border-t border-gray-100 text-center">
-            <p className="text-sm text-gray-400">&copy; 2026 Paolo Vincent Carunia. Crafted with precision.</p>
+            <p className="text-sm text-gray-400">&copy; 2026 Paolo Vincent Carunia. AI-Assisted Development.</p>
           </footer>
 
         </div>
