@@ -69,10 +69,11 @@ const DATA = {
   ],
   certs: [
     { name: "IT Specialist", issuer: "Pearson", mark: "ITS" },
-    { name: "Web Deployment", issuer: "UpSkillTechPH", mark: "G" },
-    { name: "SQL and Query Optimization", issuer: "UpSkillTechPH", mark: "P" },
-    { name: "Google Workspace", issuer: "DICT", mark: "P" },
-    { name: "Utilizing AI and Predictive Analytics", issuer: "Armstrong Training", mark: "P" },
+    { name: "Web Deployment", issuer: "UpSkillTechPH", mark: "WD" },
+    { name: "SQL and Query Optimization", issuer: "UpSkillTechPH", mark: "SQO" },
+    { name: "Google Workspace", issuer: "DICT", mark: "GW" },
+    { name: "Utilizing AI and Predictive Analytics", issuer: "Armstrong Training", mark: "UAPA" },
+    { name: "Web Development Competition", issuer: "Local Student Goverment", mark: "WDC" },
   ],
   quotes: [
     {
