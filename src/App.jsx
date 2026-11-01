@@ -14,7 +14,7 @@ const DATA = {
   stats: [
     { v: "4th", l: "year student" },
     { v: "10", l: "projects built" },
-    { v: "3", l: "certifications" },
+    { v: "5", l: "certifications" },
   ],
   projects: [
     {
@@ -35,7 +35,7 @@ const DATA = {
       badge: "Competition",
       hue: 18,
       links: [
-        { label: "Live", href: "https://www.rescuesantarosagov.live/" },
+        { label: "Live", href: "https://cict-student-portal.vercel.app" },
         { label: "Source", href: "https://github.com/Paowish/Carunia_TAL2023_00258" },
       ],
     },
