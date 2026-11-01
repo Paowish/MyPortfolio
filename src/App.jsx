@@ -65,7 +65,7 @@ const DATA = {
   ],
   stack: [
     "HTML5", "CSS", "Javascript", "TypeScript", "React", "Next.js", "Node.js", "Tailwind CSS",
-    "MongoDB", "React Native", "MySQL",
+    "MongoDB", "React Native", "MySQL", "Render", "Vercel", "Netlify", "Github", "Git", "Cloudinary",
   ],
   certs: [
     { name: "IT Specialist", issuer: "Pearson", mark: "ITS" },
