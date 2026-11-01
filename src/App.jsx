@@ -72,7 +72,7 @@ const DATA = {
     { name: "Web Deployment", issuer: "UpSkillTechPH", mark: "G" },
     { name: "SQL and Query Optimization", issuer: "UpSkillTechPH", mark: "P" },
     { name: "Google Workspace", issuer: "DICT", mark: "P" },
-    { name: "Utilizing AI and Predictive Analytics for Emergency Preparedness", issuer: "Armstrong Training", mark: "P" },
+    { name: "Utilizing AI and Predictive Analytics", issuer: "Armstrong Training", mark: "P" },
   ],
   quotes: [
     {
