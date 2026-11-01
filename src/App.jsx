@@ -14,7 +14,7 @@ const DATA = {
   stats: [
     { v: "4th", l: "year student" },
     { v: "10", l: "projects built" },
-    { v: "5", l: "certifications" },
+    { v: "6", l: "certifications" },
   ],
   projects: [
     {
