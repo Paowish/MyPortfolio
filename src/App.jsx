@@ -93,8 +93,8 @@ const DATA = {
     },
   ],
   activities: [
-    { event: "Web Development Competition (Techno Day)", result: "3rd Place", year: "2026" },
-    { event: "Fast Typing Contest at Talavera Off Campus (Techno Day)", result: "1st Place", year: "2024" },
+    { event: "Web Development Competition at Sumacab Campus (Techno Day)", result: "3rd Place", year: "2026" },
+    { event: "Fast Typing Contest at Talavera Off Campus (Techno Day)", result: "2nd Place", year: "2024" },
     { event: "Code Debugging Contest at Talavera Off Campus (Techno Day)", result: "2nd Place", year: "2023" },
   ],
 };
@@ -352,7 +352,7 @@ function Github() {
         />
       </div>
       <p className="mt-3 font-mono text-xs text-mute">
-        281 Live contributions from this year · <a href={`https://github.com/${githubUsername}`} target="_blank" rel="noreferrer" className="hover:text-fg underline">@{githubUsername}</a>
+        321 Live contributions from the last year · <a href={`https://github.com/${githubUsername}`} target="_blank" rel="noreferrer" className="hover:text-fg underline">@{githubUsername}</a>
       </p>
     </Section>
   );
